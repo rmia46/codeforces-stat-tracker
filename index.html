@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codeforces Stats Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="theme.css">
+
+</head>
+
+<body class="min-h-screen bg-gray-100 flex flex-col" style="font-family: 'Lato', sans-serif;">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white px-4 py-3 flex justify-between items-center">
+        <h1 class="text-xl font-bold">Codeforces Stats</h1>
+        <div id="auth-section" class="flex gap-2 items-center">
+            <input id="handle-input" type="text" placeholder="Enter handle" class="px-2 py-1 text-black rounded-md">
+            <button onclick="loadStats()" id="login-btn"
+                class="bg-white text-blue-600 px-3 py-1 rounded-md">Login</button>
+            <button onclick="logout()" id="logout-btn"
+                class="bg-red-500 text-white px-3 py-1 rounded-md hidden">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Welcome message -->
+    <div id="welcome" class="flex-1 flex items-center justify-center text-xl text-gray-600">
+        👋 Hi there! Please enter your Codeforces handle above to get started.
+    </div>
+
+    <main class="max-w-7xl mx-auto mt-6 hidden w-full px-4" id="stats-area">
+        <!-- User Stats -->
+        <div class="bg-white p-4 rounded-md shadow mb-4">
+            <h2 class="text-lg font-semibold mb-2">Welcome, <span id="user-handle"></span></h2>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex flex-col items-center bg-green-100 text-green-800 px-6 py-4 rounded-xl shadow-sm">
+                    <span class="text-xs uppercase tracking-wide text-green-700 font-light">Total Solved</span>
+                    <span id="total-solved" class="text-4xl font-light">0</span>
+                </div>
+                <div class="flex flex-col items-center bg-yellow-100 text-yellow-800 px-6 py-4 rounded-xl shadow-sm">
+                    <span class="text-xs uppercase tracking-wide text-yellow-700 font-light">Total Attempted</span>
+                    <span id="total-attempted" class="text-4xl font-light">0</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Rating Chart -->
+        <div class="bg-white p-4 sm:p-6 rounded-md shadow mb-4">
+
+            <h3 class="text-md font-semibold mb-2">Solved Problems by Rating</h3>
+            <canvas id="ratingChart" class=""></canvas>
+        </div>
+
+        <!-- Rating Buttons -->
+        <div class="bg-white p-4 rounded-md shadow mb-4">
+            <h3 class="text-md font-semibold mb-2">Solved Ratings</h3>
+            <div id="rating-buttons" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Problem Table -->
+        <div class="bg-white p-4 rounded-md shadow mb-4">
+            <h3 class="text-md font-semibold mb-2">Problems</h3>
+            <div class="overflow-x-auto">
+                <table class="table-auto w-full border-collapse" id="problem-table">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="border px-4 py-2 text-left">Problem</th>
+                            <th class="border px-4 py-2">Attempts</th>
+                            <th class="border px-4 py-2">Solved</th>
+                        </tr>
+                    </thead>
+                    <tbody id="problem-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+<footer class="bg-gray-800 text-white p-4 text-center text-sm mt-8">
+    <p>&copy; Roman's Tinkering @2025</p>
+</footer>
+
+</html>
