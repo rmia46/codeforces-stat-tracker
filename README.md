@@ -1,4 +1,4 @@
-# 📊 Codeforces Stats Viewer
+# 📊 Codeforces Stats Tracker
 
 A sleek and interactive web app to visualize Codeforces problem-solving stats using **Tailwind CSS** and **Chart.js**.
 
